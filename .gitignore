@@ -5,4 +5,5 @@ src\__pycache__
 tests\__pycache__
 utils\__pycache__
 database\__pycache__
-configfile/
+**configfile/config_file
+"configfile/config_file.ini"  
