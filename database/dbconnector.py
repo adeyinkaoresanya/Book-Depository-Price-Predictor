@@ -14,7 +14,7 @@ class DatabaseConnector:
     
     def read_config(self):
         config = configparser.ConfigParser()
-        config.read("configfile/config_file.ini")
+        config.read("config_file.ini")
         db_param = config["postgresql"]
         user = db_param["user"]
         password = db_param["password"]
