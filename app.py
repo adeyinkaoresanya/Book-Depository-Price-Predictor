@@ -2,14 +2,13 @@ import os
 import sys
 import numpy as np
 from flask import Flask, request
-sys.path.append(os.path.join(os.path.dirname(__file__), '..')) 
 from utils.validate import validate_input
 from database.dbconnector import DatabaseConnector
 import json
 import pickle
 
 
-db= DatabaseConnector()
+db = DatabaseConnector()
 
 model = pickle.load(open('models\model.pkl', 'rb'))
 app = Flask(__name__)
@@ -32,13 +31,13 @@ def predict() -> str:
         data= validate_input(request.data)
         predictions = model.predict(data)
         data["price"] = predictions
-        data.insert(0, 'id', range(1, 1 + len(data)))
-        db.save_predictions_to_database(data, "bookpredictions")
+        db.save_predictions_to_database(data)
         return json.dumps({"predicted_book_price": predictions.tolist()}), 200
     except (KeyError, json.JSONDecodeError, AssertionError) as error:
         return json.dumps({"error": f"CHECK INPUTS: {error}"}), 400
     except Exception as e:
-        return json.dumps({"error": f"PREDICTION FAILED because {e}"}), 500
+        raise e
+        # return json.dumps({"error": f"{e}"}), 400
 
 
 @app.route("/recent_predictions", methods=["GET"])

@@ -40,8 +40,7 @@ request_data=json.dumps({"inputs":[{
            "year": 2021
            }]
 })
-post_data = json.dumps(data)
-response = requests.post(url, data=post_data)
+response = requests.post(url, data=request_data)
 print(response.status_code, response.content)
 
 ```
