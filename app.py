@@ -10,7 +10,7 @@ import pickle
 
 db = DatabaseConnector()
 
-model = pickle.load(open('models\model.pkl', 'rb'))
+model = pickle.load(open('models/model.pkl', 'rb'))
 app = Flask(__name__)
 
 
