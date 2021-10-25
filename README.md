@@ -1,27 +1,28 @@
-# Boston House Predictor
+# Book Depository Price Predictor
 
 ## Description
 
-The Book Price Predictor is a Python application deployed on Heroku for predicting prices of books listed on the Book Depository website. This application can be accessesd [here](https://boston-house-price-predict.herokuapp.com).
+The Book Depository Price Predictor is a Python application deployed on Heroku for predicting prices of books listed on the Book Depository website. This application can be accessesd [here](https://book-depository-predictions.herokuapp.com/predict).
 
 ## Tools/Libraries required
 
 * [Python 3.9](https://python.org) : Base programming language for development. The latest version of python.
+* flask
+* psycopg2
 * sklearn
 * pickle
 * requests
-* flask
 
 ## Usage
 
-To predict book prices, send a post request [here](https://boston-house-price-predict.herokuapp.com/predict). The Predict endpoint takes only POST requests using a list of 7 features and return prices of books (in Euros)
+To predict book prices, send a post request [here](https://book-depository-predictions.herokuapp.com/predict). The Predict endpoint takes only POST requests with a list of 7 features and then return prices of books (in Euros)
 
 ```python
 
 import json
 import requests
 
-url = "https://boston-house-price-predict.herokuapp.com/predict"
+url = "https://book-depository-predictions.herokuapp.com/predict"
 request_data=json.dumps({"inputs":[{
            "genre": 'biography', 
            "format": 'Paperback', 
@@ -44,6 +45,8 @@ response = requests.post(url, data=request_data)
 print(response.status_code, response.content)
 
 ```
+
+The recent 10 predictions can be obtained from [here](https://book-depository-predictions.herokuapp.com/recent_predictions).
 
 ## Contribution
 
